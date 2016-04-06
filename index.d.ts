@@ -21,6 +21,8 @@ declare module JsRender {
 
     interface Template {
         render(data?: any, helpersOrContext?: any): string;
+        link(container: HTMLElement, data: any, helpersOrContext?: any): JQuery;
+        link(containerSelector: string, data: any, helpersOrContext?: any): JQuery;
     }
 
     interface NamedTemplate {
@@ -46,6 +48,11 @@ declare module JsRender {
         get(type: string);
         get(deep: boolean, type: string): View;
         content: Template;
+    }
+
+    export class Tag {
+        onAfterLink(tagCtx, linkCtx, eventArgs?): void;
+        base: any;
     }
 }
 
